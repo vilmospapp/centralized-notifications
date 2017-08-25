@@ -1,0 +1,42 @@
+
+
+group 'com.liferay.hackday.notification'
+version '1.0-SNAPSHOT'
+
+buildscript {
+  repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url "http://repo.spring.io/release" }
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.1.RELEASE")
+  }
+}
+
+apply plugin: 'java'
+apply plugin: org.springframework.boot.gradle.plugin.SpringBootPlugin
+
+
+task run(dependsOn: ':bootRun') << {
+    println 'Boot'
+}
+
+repositories {
+  mavenLocal()
+  mavenCentral()
+  maven { url "http://repo.spring.io/release" }
+}
+
+dependencies {
+  compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+  compile("org.springframework.boot:spring-boot-starter")
+  compile 'org.jodd:jodd-core:3.7'
+  compile 'org.jodd:jodd-json:3.7'
+  compile 'org.jodd:jodd-log:3.7'
+  compile 'org.jodd:jodd-http:3.7'
+}
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '2.12'
+}
